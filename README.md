@@ -49,6 +49,8 @@ then start the local unison process to watch your local files.
 The directory that you run the ``unison.sh`` script from is the directory that will
 be synchronized with the mount point you specified in your project docker-compose.yml (/var/www in the above examle).
 
+If you omit the ``ProjectName`` argument, the name of the current directory will be used.
+
 2. Start your project containers normally.
 ```
 docker-compose up -d
