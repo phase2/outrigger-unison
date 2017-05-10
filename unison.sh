@@ -1,7 +1,12 @@
 #!/bin/sh
 # Script to run unison sync container
 
-PROJECT=apt
+if [ $# -eq 0 ]; then
+  echo "Usage $0 ProjectName"
+  exit 1
+fi
+
+PROJECT="$1"
 CONTAINER="${PROJECT}-sync"
 VOLUME="${PROJECT}-sync"
 LOGFILE="${PROJECT}-sync.log"
