@@ -1,12 +1,11 @@
 #!/bin/sh
 # Script to run unison sync container
 
+PROJECT="$1"
 if [ $# -eq 0 ]; then
-  echo "Usage $0 ProjectName"
-  exit 1
+  PROJECT=${PWD##*/}
 fi
 
-PROJECT="$1"
 CONTAINER="${PROJECT}-sync"
 VOLUME="${PROJECT}-sync"
 LOGFILE="${PROJECT}-sync.log"
