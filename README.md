@@ -29,6 +29,7 @@ Install these dependencies on your Mac:
           volumes:
             - ProjectName-sync:/var/www
 
+
 2. Add the following lines to the end of your docker-compose.yml file to define the named volume.
 
         volumes:
