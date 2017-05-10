@@ -15,60 +15,51 @@ Install these dependencies on your Mac:
 
 1. Modify your docker-composer.yml file to mount a named volume instead of using NFS.
 
-   The default name of the volume will be {ProjectName}-sync.
+    The default name of the volume will be {ProjectName}-sync.
 
-   For example, if your docker-compose.yml contains the line:
-```
-  www:
-    volumes:
-      - .:/var/www
-```
-   change it to
-```
-  www:
-    volumes:
-      - ProjectName-sync:/var/www
-```
+    For example, if your docker-compose.yml contains the line:
+
+        www:
+          volumes:
+            - .:/var/www
+
+    change it to
+
+        www:
+          volumes:
+            - ProjectName-sync:/var/www
 
 2. Add the following lines to the end of your docker-compose.yml file to define the named volume.
 
-```
-volumes:
-  ProjectName-sync:
-    external: true
-```
+        volumes:
+          ProjectName-sync:
+            external: true
 
 ## Usage
 
 1. Start the unison container using the provided ``unison.sh`` script:
 
-```
-./unison.sh ProjectName
-```
+        ./unison.sh ProjectName
 
-   This will create the named docker volume, run a docker container for your unison server,
-   then start the local unison process to watch your local files.
+    This will create the named docker volume, run a docker container for your unison server,
+    then start the local unison process to watch your local files.
 
-   The directory that you run the ``unison.sh`` script from is the directory that will
-   be synchronized with the mount point you specified in your project docker-compose.yml (/var/www in the above examle).
+    The directory that you run the ``unison.sh`` script from is the directory that will
+    be synchronized with the mount point you specified in your project docker-compose.yml (/var/www in the above examle).
 
-   If you omit the ``ProjectName`` argument, the name of the current directory will be used.
+    If you omit the ``ProjectName`` argument, the name of the current directory will be used.
 
 2. Start your project containers normally.
 
-```
-docker-compose up -d
-```
+        docker-compose up -d
 
-   Any changes to your local files will be synced into your docker containers.
-   Any changes to the files in your docker container mount point (/var/www) will be synced to your local Mac.
-   If there is a conflict, the file on your local machine is given preference.
+     Any changes to your local files will be synced into your docker containers.
+     Any changes to the files in your docker container mount point (/var/www) will be synced to your local Mac.
+     If there is a conflict, the file on your local machine is given preference.
 
-   A log file: ``ProjectName-sync.log`` is created in the directory where you ran ``unison.sh``
-   and will show any unison sync activity.
+     A log file: ``ProjectName-sync.log`` is created in the directory where you ran ``unison.sh``
+     and will show any unison sync activity.
 
 3. To stop sychronizing files, just stop the docker container:
 
-```
-docker stop ProjectName-sync
-```
+        docker stop ProjectName-sync
