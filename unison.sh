@@ -19,7 +19,7 @@ CID=$(docker run --name ${CONTAINER} -it --rm -d \
   --env UNISON_DIR=/unison \
   --label com.dnsdock.name=sync \
   --label com.dnsdock.image=${PROJECT} \
-  my_unison)
+  docker-unison)
 
 # Wait for socker to become available
 echo "Waiting for ${CONTAINER} container..."
