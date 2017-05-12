@@ -9,7 +9,8 @@ vs NFS mounts that are much slower handling many small files (such as node_modul
 Install these dependencies on your Mac:
 
 * brew install unison
-* brew install unox
+* brew tap eugenmayer/dockersync
+* brew install eugenmayer/dockersync/unox
 
 ## Project Setup
 
